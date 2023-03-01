@@ -18,7 +18,20 @@ class Room {
     }
 
     occupancyPercentage(startDate, endDate) {
+        let differenceDates = Math.abs(startDate.getTime() - endDate.getTime());
+        let percentage = 0;
 
+        if (startDate.getTime() >= endDate.getTime()) {
+            return false;
+        }
+
+        this.bookings.forEach(booking => {
+            if (booking.checkIn.getTime() >= startDate.getTime() && booking.checkOut.getTime() <= endDate.getTime()) {
+                percentage += Math.abs(booking.checkIn.getTime() - booking.checkOut.getTime());
+            }
+        })
+
+        return percentage === 0 ? percentage : Number(((percentage * 100) / differenceDates).toFixed(0)) ;
     }
 
     static totalOccupancyPercentage(rooms, startDate, endDate) {
@@ -41,7 +54,7 @@ class Booking {
     }
 
     get fee() {
-
+        return this.room.discount + this.discount;
     }
 }
 
