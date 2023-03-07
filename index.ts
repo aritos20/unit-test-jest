@@ -1,11 +1,11 @@
-interface IRoom {
+interface RoomInput {
     name: string;
     bookings: Array<Booking>;
     rate: number;
     discount: number;
 }
 
-interface IBooking {
+interface BookingInput {
     name: string;
     email: string;
     checkIn: Date;
@@ -20,7 +20,7 @@ class Room {
     rate: number;
     discount: number;
 
-    constructor(roomInput: IRoom) {
+    constructor(roomInput: RoomInput) {
         this.name = roomInput.name;
         this.bookings = roomInput.bookings;
         this.rate = roomInput.rate;
@@ -64,7 +64,7 @@ class Booking {
     discount: number;
     room?: Room;
 
-    constructor(bookingInput: IBooking) {
+    constructor(bookingInput: BookingInput) {
         this.name = bookingInput.name;
         this.email = bookingInput.email;
         this.checkIn = bookingInput.checkIn;
